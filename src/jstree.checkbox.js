@@ -60,7 +60,14 @@
 		 * @name $.jstree.defaults.checkbox.cascade
 		 * @plugin checkbox
 		 */
-		cascade				: ''
+		cascade				: '',
+		/**
+		 * Allows for a max limit of selected items to help mitigate performance.
+		 * @name $.jstree.defaults.checkbox.hard_limit
+		 * @plugin checkbox
+		 * @author andrew@hubba.com
+		 */		
+		hard_limit          : null	
 	};
 	$.jstree.plugins.checkbox = function (options, parent) {
 		this.bind = function () {
