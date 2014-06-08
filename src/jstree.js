@@ -2559,8 +2559,13 @@
 		select_node : function (obj, supress_event, prevent_open, e) {
 			var dom, t1, t2, th;
 			if($.isArray(obj)) {
-			    if (obj.length > 99) {
-    				obj = obj.slice(0,99);
+			    if (
+			        !!this.settings.checkbox.hard_limit &&
+			        this.settings.checkbox.hard_limit !== null &&
+			        obj.length > this.settings.checkbox.hard_limit
+			        
+			        ) {
+    				obj = obj.slice(0,this.settings.checkbox.hard_limit);
 			    }
 			    else {
     				obj = obj.slice();

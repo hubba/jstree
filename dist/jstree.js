@@ -2559,8 +2559,13 @@
 		select_node : function (obj, supress_event, prevent_open, e) {
 			var dom, t1, t2, th;
 			if($.isArray(obj)) {
-			    if (obj.length > 99) {
-    				obj = obj.slice(0,99);
+			    if (
+			        !!this.settings.checkbox.hard_limit &&
+			        this.settings.checkbox.hard_limit !== null &&
+			        obj.length > this.settings.checkbox.hard_limit
+			        
+			        ) {
+    				obj = obj.slice(0,this.settings.checkbox.hard_limit);
 			    }
 			    else {
     				obj = obj.slice();
@@ -4071,7 +4076,14 @@
 		 * @name $.jstree.defaults.checkbox.cascade
 		 * @plugin checkbox
 		 */
-		cascade				: ''
+		cascade				: '',
+		/**
+		 * Allows for a max limit of selected items to help mitigate performance.
+		 * @name $.jstree.defaults.checkbox.hard_limit
+		 * @plugin checkbox
+		 * @author andrew@hubba.com
+		 */		
+		hard_limit          : null	
 	};
 	$.jstree.plugins.checkbox = function (options, parent) {
 		this.bind = function () {
